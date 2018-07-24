@@ -1,0 +1,37 @@
+<aura:component >
+		<aura:attribute name="point" type="DR_Centre__c"/>
+    
+    	<!--Display Accordion for meeting points -->
+    	<div class="slds-border_bottom slds-p-bottom_x-small">
+            <div class="slds-page-header" style="cursor: pointer;" onclick="{!c.sectionOne}">
+                <section class="slds-clearfix">
+                    <div class="slds-float--left ">
+                        <lightning:icon class="slds-show" aura:id="articleOne" iconName="utility:add" size="small" alternativeText="Indicates add"/>
+                        <lightning:icon class="slds-hide" aura:id="articleOne" iconName="utility:dash" size="small" alternativeText="Indicates dash"/>
+                    </div>
+                    <div class="slds-m-left--x-large slds-text-heading_medium" title="{!v.point.Id}"><a href="javascript:void(0);" title="{!v.point.Id}" onclick="{!c.goToRecord}" class="slds-text-link_reset">{!v.point.Name}</a></div>
+                </section>
+            </div>
+    	</div>
+    	<!--Display when accordion attribute is expanded -->
+        <div class="slds-hide slds-p-around--small" aura:id="articleOne">
+           <div class="slds-tile slds-tile_board slds-align--absolute-center tile" >
+                 <ui:outputRichText value="{!v.point.Building_Picture__c}" /> 
+            </div>
+            <div class="slds-tile slds-tile_board slds-align--absolute-center tile" >
+                <aura:if isTrue="{!v.point.Post_Code__c != null}">
+                   <!-- <a href="{!'https://www.google.com/maps/?q='+v.point.Post_Code__c}" target='_blank'> -->
+                        <ui:outputRichText value="{!v.point.Map__c}" />             
+                        <div class="lower-third slds-align--absolute-center">                       
+                            <h1 class="slds-truncate slds-align--absolute-center">{!v.point.Street_Number__c}<BR/>{!v.point.Post_Code__c}<BR/>{!v.point.City__c}</h1><BR/>                        
+                        </div>                    
+                   <!-- </a> -->
+                    <aura:set attribute="else">
+                        <div class="slds-text-align_center slds-text-color_weak">
+        					{!v.point.Map__c}
+                        </div>
+    				</aura:set>
+                </aura:if>
+            </div> 
+    	</div>
+</aura:component>

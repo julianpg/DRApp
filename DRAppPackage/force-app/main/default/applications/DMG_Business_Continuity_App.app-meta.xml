@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#9A4E9E</headerColor>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>DMG Business Continuity App</label>
+    <navType>Standard</navType>
+    <tabs>DMGT_Business_Continuity_App</tabs>
+    <tabs>DR_Contact__c</tabs>
+    <tabs>DR_Centre__c</tabs>
+    <tabs>DR_App_FAQ__c</tabs>
+    <tabs>standard-File</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>DMG_Business_Continuity_App_UtilityBar</utilityBar>
+</CustomApplication>

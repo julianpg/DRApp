@@ -1,0 +1,13 @@
+<aura:component controller="MeetingPointController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+	<aura:attribute name="meetingPoints" type="DR_Centre__c[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadLists}" />
+    	
+    <lightning:card title="Meeting Points" iconName="action:map" footer="Copyright © 2018-present DMG Media. All rights reserved.">
+       <div class="slds-p-around--small">
+          <aura:iteration items="{!v.meetingPoints}" var="point">
+            <c:MeetingPointImages point="{!point}"/>
+          </aura:iteration>
+       </div>
+    </lightning:card>
+</aura:component>

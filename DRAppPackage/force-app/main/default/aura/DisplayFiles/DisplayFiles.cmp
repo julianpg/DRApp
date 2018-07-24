@@ -1,0 +1,57 @@
+<aura:component controller="FileListApexController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    
+    <aura:attribute name="myFiles"  type="ContentDocument[]" />
+    <aura:attribute name="FilesMap" type="Map"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadFiles}" />
+    
+    <!--Load Files Shared with user and Files owned by user-->
+    <lightning:card title="Tabs" iconName="action:add_file" footer="Copyright © 2018-present DMG Media. All rights reserved.">        
+        <lightning:tabset >
+            <lightning:tab label="All Documents">
+               <div class="slds-p-around--small">
+               <aura:if isTrue="{! !empty(v.FilesMap)}">               			
+                    <aura:iteration items="{!v.FilesMap}" var="f" > 
+                        <c:fileList Files="{!f.value}" Folder="{!f.folder}"/>
+                  </aura:iteration>
+                </aura:if>
+                </div>
+             </lightning:tab>
+             <lightning:tab label="My Documents">
+                  <aura:if isTrue="{! !empty(v.myFiles)}"> 
+                    <ul class="slds-has-dividers_around-space slds-m-right_x-small slds-m-left_x-small">
+                        <aura:iteration items="{!v.myFiles}" var="File" >
+                             
+                          <li class="slds-item">
+                              <lightning:tile class="slds-tile_board">                              
+                                <aura:set attribute="media">
+                                    <lightning:icon iconName="{!File.FileType == 'PDF' ? 'doctype:pdf' :
+                                                              (File.FileType  == 'JPG' ? 'doctype:image':
+                                                              (File.FileType  == 'WORD_X' ? 'doctype:word':
+                                                              (File.FileType  == 'EXCEL_X' ? 'doctype:excel':
+                                                              'doctype:unknown'))) }" />
+                                </aura:set>
+                                  <dl class="slds-dl_horizontal">
+                                     <dt class="slds-dl_horizontal__label">
+                                         <p class="slds-truncate slds-text-heading_small slds-m-top_x-small" ><a href="" onclick="{!c.openFile}" id="{!File.Id}" class="slds-text-link_reset">{!File.Title}</a></p>
+                                     </dt>
+                                     <dt class="slds-dl_horizontal__label">
+                                         <p class="slds-truncate slds-m-top_x-small">{!File.FileType}</p>
+                                     </dt>
+                                  </dl>                                    
+                              </lightning:tile>
+                          </li>
+                      </aura:iteration>
+                    </ul>
+                     
+                    <aura:set attribute="else">
+                         <div class="slds-text-align_center slds-text-color_weak">
+                        	No Documents available to view, if you are expecting to see documents please reach out to the system admin
+                         </div>
+  					</aura:set>
+                 </aura:if>
+                
+            </lightning:tab>
+        </lightning:tabset>
+    </lightning:card>	
+</aura:component>

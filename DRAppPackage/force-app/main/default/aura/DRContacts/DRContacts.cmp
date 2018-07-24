@@ -1,0 +1,51 @@
+<aura:component controller="DRContactController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    
+    <!-- Attributes to hold the lists of DR Contacts and the list views to filter by -->
+	<aura:attribute name="contacts" type="DR_Contact__c[]" />
+    <aura:attribute name="DrContactListView" type="ListView[]"/>
+    <aura:attribute name="type" type="String"/>
+    
+    <!-- Load the list views on component startup -->
+    <aura:handler name="init" value="{!this}" action="{!c.loadLists}" />
+    
+    <!-- iterate over the listviews to filter contacts -->
+    <lightning:card title="Filter By" iconName="action:edit_groups">
+         <lightning:layout horizontalAlign="center" multipleRows="true">
+            <lightning:layoutItem flexibility="auto" padding="horizontal-small">
+                    <form>
+                        <lightning:select name="selectItem" label="ContactType" variant="label-hidden" value="{!v.type}" onchange="{!c.getCons}">
+                            		<option value="">Select Contact Type</option>
+                             <aura:iteration items="{!v.DrContactListView}" var="type">                           
+                                    <option value="{!type.Name}" >{!type.Name}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </form>	
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+    
+    <!-- iterate over the contacts and display them-->
+    <lightning:card title="Contacts" iconName="action:user" footer="Copyright © 2018-present DMG Media. All rights reserved.">
+      <aura:if isTrue="{! !empty(v.contacts)}">
+        <ul class="slds-has-dividers_around-space slds-m-right_x-small slds-m-left_x-small">
+          <aura:iteration items="{!v.contacts}" var="contact">
+              <li class="slds-item" >
+                  <article class="slds-tile slds-tile_board">
+                    <h1 class="slds-tile__title slds-text-heading_medium" title="{!contact.Id}"><a href="javascript:void(0);" title="{!contact.Id}" onclick="{!c.goToRecord}" class="slds-text-link_reset">{!contact.Name}</a></h1>
+                        <div class="slds-tile__detail">
+                          <p class="slds-text-heading_small slds-p-top_xx-small"><lightning:icon iconName="utility:outbound_call" size="x-small" alternativeText="M:"/> <lightning:formattedPhone value="{!' '+contact.Mobile__c}"></lightning:formattedPhone></p>
+                          <p class="slds-text-heading_small slds-p-top_xx-small"><lightning:formattedEmail value="{!contact.Email__c+'?subject=Crisis'}" label="{!'Email '+contact.First_Name__c}"/></p>
+                        </div>
+                  </article>
+              </li>
+           </aura:iteration>
+        </ul>
+        <aura:set attribute="else">
+            <div class="slds-text-align_center slds-text-color_weak">
+                  No Contacts to Display, please select a filter from the list above
+            </div>
+        </aura:set>
+       </aura:if>
+    </lightning:card>
+    
+</aura:component>

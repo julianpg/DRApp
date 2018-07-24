@@ -1,0 +1,42 @@
+<aura:component >
+    	<aura:attribute name="Files" type="list"/>
+    	<aura:attribute name="Folder" type="string"/>
+    
+                    <div class="slds-border_bottom slds-p-bottom_x-small">
+                        <div class="slds-page-header" style="cursor: pointer;" onclick="{!c.sectionOne}">
+                            <section class="slds-clearfix">
+                                <div class="slds-float--left ">
+                                    <lightning:icon class="slds-show" aura:id="articleOne" iconName="utility:open_folder" size="small" alternativeText="Indicates add"/>
+                                    <lightning:icon class="slds-hide" aura:id="articleOne" iconName="utility:opened_folder" size="small" alternativeText="Indicates dash"/>
+                                </div>
+                                <div class="slds-m-left--x-large slds-text-heading_medium"><a href="javascript:void(0);" class="slds-text-link_reset">{!v.Folder}</a></div>
+                            </section>
+                        </div>
+                    </div>
+                <!--Display when accordion attribute is expanded -->
+                <div class="slds-hide slds-p-around--small" aura:id="articleOne">
+					<ul class="slds-has-dividers_around-space slds-m-right_x-small slds-m-left_x-small">
+                        <aura:iteration items="{!v.Files}" var="file" >
+                            <li class="slds-item">
+                                <lightning:tile class="slds-tile_board">
+                                    <aura:set attribute="media">
+                                        <lightning:icon iconName="{!file.ContentDocument.FileType == 'PDF' ? 'doctype:pdf' :
+                                                                  (file.ContentDocument.FileType  == 'JPG' ? 'doctype:image':
+                                                                  (file.ContentDocument.FileType  == 'WORD_X' ? 'doctype:word':
+                                                                  (file.ContentDocument.FileType  == 'EXCEL_X' ? 'doctype:excel':
+                                                                  'doctype:unknown'))) }" />
+                                    </aura:set>
+                                    <dl class="slds-dl_horizontal">
+                                        <dt class="slds-dl_horizontal__label">
+                                            <p class="slds-truncate slds-text-heading_small slds-m-top_x-small" ><a href="" onclick="{!c.openFile}" id="{!file.ContentDocumentId}" class="slds-text-link_reset">{!file.ContentDocument.Title}</a></p>
+                                        </dt>
+                                        <dt class="slds-dl_horizontal__label">
+                                            <p class="slds-truncate slds-m-top_x-small">{!file.ContentDocument.FileType}</p>
+                                        </dt>
+                                    </dl>  
+                                </lightning:tile>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+</aura:component>

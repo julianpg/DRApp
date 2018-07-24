@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>DRAPPLandingPageText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DRAPPLandingPageText</shortDescription>
+        <value>In managing any business continuity event it is critical to recognise that a successful outcome is judged by both the technical response and the ability and training of
+the management and staff to successfully execute the response. This should be seen as 
+        a critical success factor with equal priority to the technical solution.</value>
+    </labels>
+    <labels>
+        <fullName>DR_App_Libraries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DR App Libraries</shortDescription>
+        <value>Process,Continuity Plans,Emergency Services,Travel and Hotel,Utilities,Northcliffe House Evactuation</value>
+    </labels>
+</CustomLabels>

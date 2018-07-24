@@ -1,0 +1,21 @@
+<aura:component controller="DRAppFaqs" implements="force:appHostable,flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="faqs" type="DR_App_FAQ__c[]"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:card title="FAQs" >
+        
+        <lightning:accordion aura:id="section">
+            <aura:iteration items="{!v.faqs}" var="faq">
+                              
+                    <lightning:accordionSection label="{!faq.Name}" >
+                        <ui:outputRichText value="{!faq.Body__c}" /> 
+                    </lightning:accordionSection> 
+                 
+            </aura:iteration>
+        </lightning:accordion>
+           
+    </lightning:card>
+   
+</aura:component>

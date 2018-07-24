@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>DR_Contacts</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DR Contacts</label>
+        <sharedTo>
+            <group>DR_App_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Crisis Management Team,DMG Media Senior Management,Emergency Contacts,Useful Contacts</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DR_VIP_Contacts</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DR VIP Contacts</label>
+        <sharedTo>
+            <group>DR_App_User_DMGT_Access</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>DMGT Contacts</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Map__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(Post_Code__c)),HYPERLINK(&quot;https://www.google.com/maps/?q=&quot;+Post_Code__c,IMAGE(&#39;https://maps.googleapis.com/maps/api/staticmap?center=&#39;+Post_Code__c+&#39;&amp;zoom=15&amp;scale=false&amp;size=400x400&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff3643%7Clabel:%7C&#39;+Post_Code__c, &#39;Location&#39;)),&quot;A postcode needs to be entered for the location in order to view the map&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Map</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
